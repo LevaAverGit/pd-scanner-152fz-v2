@@ -1,0 +1,45 @@
+{% extends "admin/base.html" %}
+{% block title %}Заявки — Admin{% endblock %}
+{% block content %}
+<h1 class="admin-title">Заявки (submissions) — последние 100</h1>
+{% if rows %}
+<div style="overflow-x:auto">
+<table class="admin-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Дата</th>
+      <th>Тип формы</th>
+      <th>Имя</th>
+      <th>Email</th>
+      <th>Телефон</th>
+      <th>Компания</th>
+      <th>Страница</th>
+      <th>Согласие</th>
+      <th>Ссылка на Политику</th>
+      <th>Профиль</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in rows %}
+    <tr>
+      <td>{{ row.id }}</td>
+      <td>{{ row.created_at }}</td>
+      <td>{{ row.form_type }}</td>
+      <td>{{ row.name }}</td>
+      <td>{{ row.email }}</td>
+      <td>{{ row.phone }}</td>
+      <td>{{ row.company }}</td>
+      <td>{{ row.source_page }}</td>
+      <td><span class="badge {% if row.consent_type == 'explicit_checkbox' %}badge-good{% elif row.consent_type == 'bundled_text' %}badge-mixed{% else %}badge-bad{% endif %}">{{ row.consent_type }}</span></td>
+      <td><span class="badge {% if row.privacy_link_present %}badge-present{% else %}badge-absent{% endif %}">{% if row.privacy_link_present %}да{% else %}нет{% endif %}</span></td>
+      <td><span class="badge {% if row.profile_mode == 'good_compliance' %}badge-good{% elif row.profile_mode == 'mixed_compliance' %}badge-mixed{% else %}badge-bad{% endif %}">{{ row.profile_mode }}</span></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% else %}
+<p>Нет данных. Отправьте форму на сайте, чтобы увидеть заявки.</p>
+{% endif %}
+{% endblock %}

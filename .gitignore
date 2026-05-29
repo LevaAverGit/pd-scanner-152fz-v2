@@ -1,0 +1,63 @@
+# Python
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+.cache/
+
+# Build
+dist/
+build/
+
+# Runtime artifacts — generated at runtime, never committed
+*.db
+exports/
+screenshots/
+logs/
+
+docs/diploma_positioning.md
+docs/gost/
+docs/presentation/
+docs/final_pack/
+labs/enterprise_demo_site/backend/generated_policies/*.pdf
+labs/enterprise_demo_site/backend/generated_policies/*.docx
+
+# Local startup scripts
+start_all.py
+start_all.command
+jfe.py
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+tmp/

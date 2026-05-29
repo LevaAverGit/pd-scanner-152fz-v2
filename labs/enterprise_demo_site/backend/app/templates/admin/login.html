@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Вход — Admin ДемоКорп</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <style>
+    .login-wrap { min-height:100vh; display:flex; align-items:center; justify-content:center; background:#f0f3f8; }
+    .login-box { background:#fff; padding:2.5rem; border-radius:8px; box-shadow:0 4px 20px rgba(0,0,0,0.12); width:360px; }
+    .login-box h1 { margin:0 0 1.5rem; font-size:1.4rem; color:#1a2b4a; text-align:center; }
+    .login-box .field { margin-bottom:1rem; }
+    .login-box label { display:block; margin-bottom:0.3rem; font-size:0.9rem; color:#444; }
+    .login-box input[type=password] { width:100%; box-sizing:border-box; padding:0.6rem 0.8rem; border:1px solid #ccc; border-radius:4px; font-size:1rem; }
+    .login-box .error { background:#f8d7da; color:#721c24; padding:0.5rem 0.75rem; border-radius:4px; margin-bottom:1rem; font-size:0.9rem; }
+    .login-box button { width:100%; padding:0.75rem; background:#e85d04; color:#fff; border:none; border-radius:4px; font-size:1rem; cursor:pointer; }
+    .login-box button:hover { background:#c44d03; }
+    .login-hint { text-align:center; margin-top:1rem; font-size:0.8rem; color:#888; }
+  </style>
+</head>
+<body>
+  <div class="login-wrap">
+    <div class="login-box">
+      <h1>Вход в панель администратора</h1>
+      {% if error %}
+      <div class="error">{{ error }}</div>
+      {% endif %}
+      <form method="post" action="/admin/login">
+        <div class="field">
+          <label for="password">Пароль</label>
+          <input type="password" id="password" name="password" placeholder="Введите пароль" autofocus>
+        </div>
+        <button type="submit">Войти</button>
+      </form>
+      <p class="login-hint">Пароль задаётся через LAB_ADMIN_PASSWORD (см. .env.example)</p>
+    </div>
+  </div>
+</body>
+</html>

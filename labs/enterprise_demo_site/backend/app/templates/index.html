@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% block title %}ДемоКорп — Enterprise Automation Platform{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="container">
+    <h1>Автоматизируйте бизнес-процессы с ДемоКорп</h1>
+    <p class="hero-sub">Enterprise-класс платформа для B2B автоматизации, интеграции и аналитики.</p>
+    <div class="hero-cta">
+      <a href="/request-demo" class="btn-primary">Запросить демо</a>
+      <button class="btn-secondary" onclick="document.getElementById('quick-lead-modal').style.display='flex'">
+        Узнать больше
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="features container">
+  <h2>Ключевые возможности</h2>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <h3>Интеграции</h3>
+      <p>Подключайте CRM, ERP и аналитические системы в несколько кликов.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Аналитика</h3>
+      <p>Дашборды реального времени и отчёты для принятия бизнес-решений.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Безопасность</h3>
+      <p>Соответствие 152-ФЗ, ГОСТ и корпоративным стандартам информационной безопасности.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Масштабируемость</h3>
+      <p>Платформа растёт вместе с вашим бизнесом. От 10 до 10 000 пользователей.</p>
+    </div>
+    <div class="feature-card">
+      <h3>API-first</h3>
+      <p>Открытый REST API для интеграции с любыми корпоративными системами.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Поддержка 24/7</h3>
+      <p>Выделенная команда поддержки для корпоративных клиентов.</p>
+    </div>
+  </div>
+</section>
+
+<section class="stats container">
+  <div class="stats-grid">
+    <div class="stat-item">
+      <span class="stat-number">500+</span>
+      <span class="stat-label">Enterprise-клиентов</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">99.9%</span>
+      <span class="stat-label">SLA uptime</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">40%</span>
+      <span class="stat-label">Рост эффективности</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">15+</span>
+      <span class="stat-label">Лет на рынке</span>
+    </div>
+  </div>
+</section>
+
+<section class="webinar-cta container">
+  <div class="cta-box">
+    <h2>Вебинар: Автоматизация B2B-продаж</h2>
+    <p>Зарегистрируйтесь на бесплатный вебинар и узнайте как увеличить конверсию на 40%.</p>
+    <a href="/webinar" class="btn-primary">Зарегистрироваться</a>
+  </div>
+</section>
+
+<!-- Hidden modal lead form (CTA-triggered) -->
+<div id="quick-lead-modal" class="modal-overlay" style="display:none">
+  <div class="modal-box">
+    <button class="modal-close" onclick="document.getElementById('quick-lead-modal').style.display='none'">&times;</button>
+    <h3>Получить материалы</h3>
+    {% if profile == "mixed_compliance" %}
+    <p class="form-note">
+      Отправляя форму, вы соглашаетесь с <a href="/privacy">Политикой конфиденциальности</a>.
+    </p>
+    {% endif %}
+    <form id="modal-form" {% if profile == "bad_compliance" %}data-crm-capture{% endif %}>
+      <input type="hidden" name="form_type" value="modal_lead">
+      <input type="hidden" name="source_page" value="/">
+      <div class="field">
+        <label for="modal-name">Имя и фамилия</label>
+        <input type="text" id="modal-name" name="name" placeholder="Иван Петров">
+      </div>
+      <div class="field">
+        <label for="modal-email">Электронная почта</label>
+        <input type="email" id="modal-email" name="email" placeholder="ivan@company.ru">
+      </div>
+      <div class="field">
+        <label for="modal-company">Компания</label>
+        <input type="text" id="modal-company" name="company" placeholder="ООО Компания">
+      </div>
+      {% if profile == "good_compliance" %}
+      <div class="field consent-field">
+        <input type="checkbox" id="modal-consent" name="consent" value="1" required>
+        <label for="modal-consent">Я согласен на обработку персональных данных согласно <a href="/privacy">Политике конфиденциальности</a></label>
+      </div>
+      {% endif %}
+      <button type="submit" class="btn-primary">Получить</button>
+    </form>
+  </div>
+</div>
+
+<script>
+document.getElementById('modal-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var formData = new FormData(this);
+  var data = {};
+  formData.forEach(function(v, k) { data[k] = v; });
+
+  fetch('/api/lead', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(data)
+  }).then(function() {
+    document.getElementById('quick-lead-modal').style.display = 'none';
+    alert('Спасибо! Материалы отправлены на ваш email.');
+  });
+});
+</script>
+{% endblock %}

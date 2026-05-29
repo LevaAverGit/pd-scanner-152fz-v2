@@ -1,0 +1,35 @@
+{% extends "admin/base.html" %}
+{% block title %}Обработчики — Admin{% endblock %}
+{% block content %}
+<h1 class="admin-title">Обработчики персональных данных — последние 100</h1>
+{% if rows %}
+<div style="overflow-x:auto">
+<table class="admin-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Submission ID</th>
+      <th>Обработчик</th>
+      <th>Тип</th>
+      <th>Доказательство</th>
+      <th>Дата</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in rows %}
+    <tr>
+      <td>{{ row.id }}</td>
+      <td>{{ row.submission_id }}</td>
+      <td>{{ row.processor_name }}</td>
+      <td><span class="badge {% if row.processor_type == 'storage' %}badge-good{% elif row.processor_type == 'notification' %}badge-mixed{% else %}badge-bad{% endif %}">{{ row.processor_type }}</span></td>
+      <td>{{ row.evidence }}</td>
+      <td>{{ row.created_at }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% else %}
+<p>Нет данных об обработчиках.</p>
+{% endif %}
+{% endblock %}

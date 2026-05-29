@@ -1,0 +1,35 @@
+{% extends "admin/base.html" %}
+{% block title %}Маршрутизация — Admin{% endblock %}
+{% block content %}
+<h1 class="admin-title">Журнал маршрутизации — последние 100</h1>
+{% if rows %}
+<div style="overflow-x:auto">
+<table class="admin-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Submission ID</th>
+      <th>Тип маршрута</th>
+      <th>Назначение</th>
+      <th>Статус</th>
+      <th>Дата</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in rows %}
+    <tr>
+      <td>{{ row.id }}</td>
+      <td>{{ row.submission_id }}</td>
+      <td><span class="badge {% if row.route_type == 'first_party' %}badge-good{% elif row.route_type == 'webhook' %}badge-mixed{% else %}badge-bad{% endif %}">{{ row.route_type }}</span></td>
+      <td>{{ row.destination }}</td>
+      <td>{{ row.status }}</td>
+      <td>{{ row.created_at }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% else %}
+<p>Нет данных о маршрутизации.</p>
+{% endif %}
+{% endblock %}

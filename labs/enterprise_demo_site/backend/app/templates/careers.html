@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}Карьера — ДемоКорп{% endblock %}
+{% block content %}
+<section class="container">
+  <h1>Карьера в ДемоКорп</h1>
+  <p class="hero-sub">Мы ищем талантливых специалистов для развития нашей enterprise-платформы.</p>
+
+  <h2>Открытые вакансии</h2>
+  <div class="job-list">
+    <div class="job-card">
+      <h3>Backend-разработчик (Python/FastAPI)</h3>
+      <p>Опыт: от 3 лет | Формат: удалённо / Москва</p>
+      <p>Разработка высоконагруженных микросервисов, интеграции с корпоративными системами.</p>
+    </div>
+    <div class="job-card">
+      <h3>Frontend-разработчик (React/TypeScript)</h3>
+      <p>Опыт: от 2 лет | Формат: гибрид</p>
+      <p>Разработка enterprise-компонентов, дашборды, визуализация данных.</p>
+    </div>
+    <div class="job-card">
+      <h3>Data Engineer</h3>
+      <p>Опыт: от 4 лет | Формат: Москва</p>
+      <p>Построение ETL-пайплайнов, работа с большими объёмами корпоративных данных.</p>
+    </div>
+    <div class="job-card">
+      <h3>Product Manager</h3>
+      <p>Опыт: от 3 лет | Формат: гибрид</p>
+      <p>Управление продуктовой дорожной картой, работа с enterprise-клиентами.</p>
+    </div>
+  </div>
+
+  <h2>Отправить резюме</h2>
+  <form method="post" action="/submit" class="main-form">
+    <input type="hidden" name="form_type" value="job_application">
+    <input type="hidden" name="source_page" value="/careers">
+    <div class="field">
+      <label for="name">ФИО (full name)</label>
+      <input type="text" id="name" name="name" required>
+    </div>
+    <div class="field">
+      <label for="email">Email (Электронная почта)</label>
+      <input type="email" id="email" name="email" required>
+    </div>
+    <div class="field">
+      <label for="phone">Телефон</label>
+      <input type="tel" id="phone" name="phone">
+    </div>
+    <div class="field">
+      <label for="message">Сопроводительное письмо</label>
+      <textarea id="message" name="message" rows="4" placeholder="Расскажите о себе и на какую вакансию претендуете..."></textarea>
+    </div>
+    {% if profile == "good_compliance" %}
+    <div class="field consent-field">
+      <input type="checkbox" id="consent" name="consent" value="1" required>
+      <label for="consent">Согласен на обработку персональных данных (<a href="/privacy">Политика конфиденциальности</a>)</label>
+    </div>
+    {% elif profile == "mixed_compliance" %}
+    <p class="bundled-consent">Отправляя резюме, вы соглашаетесь с <a href="/privacy">Политикой конфиденциальности</a>.</p>
+    {% endif %}
+    <button type="submit" class="btn-primary">Отправить резюме</button>
+  </form>
+</section>
+{% endblock %}

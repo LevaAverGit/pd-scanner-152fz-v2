@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}ДемоКорп — Enterprise Platform{% endblock %}</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <!-- Mock Analytics Integration -->
+  <script src="/mock/analytics.js"></script>
+  {% if profile == "bad_compliance" %}
+  <!-- CRM SDK (bad_compliance mode) -->
+  <script src="/mock/crm.js"></script>
+  {% endif %}
+  {% block head %}{% endblock %}
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a href="/" class="brand">ДемоКорп</a>
+      <ul class="nav-links">
+        <li><a href="/services">Услуги</a></li>
+        <li><a href="/pricing">Тарифы</a></li>
+        <li><a href="/about">О нас</a></li>
+        <li><a href="/careers">Карьера</a></li>
+        <li><a href="/request-demo" class="btn-nav">Запросить демо</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  {% if profile != "bad_compliance" %}
+  <!-- Cookie banner (good and mixed compliance) -->
+  <div id="cookie-banner" class="cookie-banner" style="display:none">
+    <div class="container cookie-inner">
+      <span>Мы используем файлы cookie.
+        <a href="/cookies">Подробнее</a>
+        {% if profile == "good_compliance" %}
+          | <a href="/privacy">Политика конфиденциальности</a>
+        {% endif %}
+      </span>
+      <button onclick="acceptCookies()">Принять</button>
+    </div>
+  </div>
+  <script>
+    if (!localStorage.getItem('cookieConsent')) {
+      document.getElementById('cookie-banner').style.display = 'flex';
+    }
+    function acceptCookies() {
+      localStorage.setItem('cookieConsent', '1');
+      document.getElementById('cookie-banner').style.display = 'none';
+    }
+  </script>
+  {% endif %}
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-col">
+        <strong>ДемоКорп</strong>
+        <p>Enterprise B2B платформа для автоматизации бизнеса.</p>
+      </div>
+      <div class="footer-col">
+        <strong>Платформа</strong>
+        <ul>
+          <li><a href="/services">Услуги</a></li>
+          <li><a href="/pricing">Тарифы</a></li>
+          <li><a href="/request-demo">Запросить демо</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <strong>Компания</strong>
+        <ul>
+          <li><a href="/about">О нас</a></li>
+          <li><a href="/careers">Карьера</a></li>
+          <li><a href="/contact">Контакты</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <strong>Правовые документы</strong>
+        <ul>
+          {% if profile != "bad_compliance" %}
+          <li><a href="/privacy">Политика конфиденциальности</a></li>
+          <li><a href="/privacy.pdf">Политика (PDF)</a></li>
+          <li><a href="/privacy.docx">Политика (DOCX)</a></li>
+          {% else %}
+          <li><a href="/terms">Условия использования</a></li>
+          {% endif %}
+          <li><a href="/cookies">Политика cookies</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2026 ООО «ДемоКорп» |
+          {% if profile != "bad_compliance" %}
+          <a href="/privacy">Политика конфиденциальности</a> |
+          {% endif %}
+          <a href="/terms">Условия</a>
+          {% if profile != "bad_compliance" %}
+          | privacy@democorp.local
+          {% endif %}
+        </p>
+        <!-- Profile mode indicator for lab testing -->
+        <p class="lab-mode">Lab mode: {{ profile }}</p>
+      </div>
+    </div>
+  </footer>
+
+  {% if profile == "bad_compliance" %}
+  <!-- Tracking pixel in bad_compliance mode -->
+  <img src="/mock/pixel.gif" width="1" height="1" style="position:absolute;top:0;left:0" alt="">
+  {% endif %}
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

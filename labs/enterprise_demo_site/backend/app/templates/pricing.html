@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}Тарифы — ДемоКорп{% endblock %}
+{% block content %}
+<section class="container content-page">
+  <h1>Тарифные планы</h1>
+  <p class="hero-sub">Прозрачное ценообразование для бизнеса любого масштаба.</p>
+
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="pricing-header">
+        <h2>Старт</h2>
+        <div class="price">от 50 000 ₽/мес</div>
+      </div>
+      <ul class="pricing-features">
+        <li>До 50 пользователей</li>
+        <li>Базовые интеграции (5 коннекторов)</li>
+        <li>Аналитика (стандартные отчёты)</li>
+        <li>Поддержка: email, 5×8</li>
+        <li>SLA 99.5%</li>
+      </ul>
+      <a href="/request-demo" class="btn-secondary">Запросить демо</a>
+    </div>
+
+    <div class="pricing-card featured">
+      <div class="pricing-badge">Популярный</div>
+      <div class="pricing-header">
+        <h2>Бизнес</h2>
+        <div class="price">от 150 000 ₽/мес</div>
+      </div>
+      <ul class="pricing-features">
+        <li>До 500 пользователей</li>
+        <li>Расширенные интеграции (20 коннекторов)</li>
+        <li>BI-дашборды и прогнозная аналитика</li>
+        <li>Управление персональными данными (152-ФЗ)</li>
+        <li>Поддержка: телефон + email, 5×8</li>
+        <li>SLA 99.9%</li>
+      </ul>
+      <a href="/request-demo" class="btn-primary">Запросить демо</a>
+    </div>
+
+    <div class="pricing-card">
+      <div class="pricing-header">
+        <h2>Enterprise</h2>
+        <div class="price">Индивидуально</div>
+      </div>
+      <ul class="pricing-features">
+        <li>Неограниченное число пользователей</li>
+        <li>Полный набор интеграций</li>
+        <li>Выделенный аналитик данных</li>
+        <li>Полный модуль ПДн: согласия, реестры, DPIA</li>
+        <li>Поддержка 24/7 + выделенный менеджер</li>
+        <li>SLA 99.99% | On-premise опция</li>
+        <li>Аудит соответствия 152-ФЗ</li>
+      </ul>
+      <a href="/request-demo" class="btn-secondary">Связаться с нами</a>
+    </div>
+  </div>
+
+  <div class="pricing-note">
+    <p>Все тарифы включают размещение данных на серверах в РФ, соответствие 152-ФЗ и технический аудит безопасности. НДС не включён.</p>
+  </div>
+</section>
+{% endblock %}

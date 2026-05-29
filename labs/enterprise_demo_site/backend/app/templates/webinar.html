@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}Вебинар — ДемоКорп{% endblock %}
+{% block content %}
+<section class="form-section container">
+  <div class="form-layout">
+    <div class="form-main">
+      <h1>Регистрация на вебинар</h1>
+      <p class="hero-sub">Автоматизация B2B-продаж: практические кейсы и инструменты</p>
+      <p>Дата: 15 апреля 2026 | 14:00 МСК | Онлайн</p>
+      <form id="webinar-form" class="main-form">
+        <input type="hidden" name="form_type" value="webinar_registration">
+        <input type="hidden" name="source_page" value="/webinar">
+        <div class="field">
+          <label for="name">Имя (name)</label>
+          <input type="text" id="name" name="name" placeholder="Имя Фамилия" required>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="email@company.ru" required>
+        </div>
+        <div class="field">
+          <label for="phone">Телефон</label>
+          <input type="tel" id="phone" name="phone">
+        </div>
+        <div class="field">
+          <label for="company">Компания</label>
+          <input type="text" id="company" name="company">
+        </div>
+        {% if profile == "good_compliance" %}
+        <div class="field consent-field">
+          <input type="checkbox" id="consent" name="consent" value="1" required>
+          <label for="consent">Согласен с <a href="/privacy">Политикой конфиденциальности</a></label>
+        </div>
+        {% elif profile == "mixed_compliance" %}
+        <p class="bundled-consent">Регистрируясь, вы соглашаетесь с <a href="/privacy">Политикой конфиденциальности</a>.</p>
+        {% endif %}
+        <button type="submit" class="btn-primary">Зарегистрироваться</button>
+      </form>
+      <div id="webinar-success" style="display:none" class="success-msg">
+        <h3>Регистрация прошла успешно!</h3>
+        <p>Ссылка на вебинар придёт на ваш email за 24 часа до начала.</p>
+      </div>
+    </div>
+    <div class="form-sidebar">
+      <div class="sidebar-card">
+        <h3>Программа вебинара</h3>
+        <ul>
+          <li>Тренды B2B автоматизации в 2026</li>
+          <li>Кейс: рост конверсии на 40% за 3 месяца</li>
+          <li>Демонстрация платформы ДемоКорп</li>
+          <li>Вопросы и ответы</li>
+        </ul>
+      </div>
+      <div class="sidebar-card">
+        <h3>Спикеры</h3>
+        <p>Алексей Смирнов — CTO ДемоКорп</p>
+        <p>Мария Козлова — Head of Sales Automation</p>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+document.getElementById('webinar-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var data = new FormData(this);
+  fetch('/submit', {method: 'POST', body: data})
+    .then(function() {
+      document.getElementById('webinar-form').style.display = 'none';
+      document.getElementById('webinar-success').style.display = 'block';
+    });
+});
+</script>
+{% endblock %}

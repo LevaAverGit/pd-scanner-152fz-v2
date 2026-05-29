@@ -1,0 +1,197 @@
+{
+  "_note": "SYNTHETIC EXAMPLE — All data is fabricated for demonstration purposes. Does not represent any real organisation or scan result.",
+  "scan_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "url": "https://example-corp.ru/register",
+  "status": "complete",
+  "notes": null,
+  "created_at": "2026-04-01T10:15:42Z",
+  "completed_at": "2026-04-01T10:16:09Z",
+  "error": null,
+  "screenshot_path": "screenshots/a1b2c3d4-e5f6-7890-abcd-ef1234567890.png",
+  "registration_relevance": "high",
+  "data_categories": [
+    {
+      "category": "email",
+      "confidence": 1.0,
+      "matched_signals": ["email", "email (label: Электронная почта)"],
+      "explanation": "email field detected via name and label"
+    },
+    {
+      "category": "full_name",
+      "confidence": 1.0,
+      "matched_signals": ["name", "first_name", "last_name"],
+      "explanation": "multiple name-related fields detected"
+    },
+    {
+      "category": "phone",
+      "confidence": 1.0,
+      "matched_signals": ["phone", "tel"],
+      "explanation": "phone field detected"
+    },
+    {
+      "category": "date_of_birth",
+      "confidence": 0.7,
+      "matched_signals": ["dob"],
+      "explanation": "date of birth field detected"
+    },
+    {
+      "category": "address",
+      "confidence": 0.7,
+      "matched_signals": ["city"],
+      "explanation": "address-related field detected"
+    },
+    {
+      "category": "password",
+      "confidence": 1.0,
+      "matched_signals": ["password", "confirm_password"],
+      "explanation": "password field detected"
+    }
+  ],
+  "network_observations": [
+    {"host": "mc.yandex.ru", "resource_type": "script", "method": "GET", "is_third_party": true},
+    {"host": "connect.facebook.net", "resource_type": "script", "method": "GET", "is_third_party": true},
+    {"host": "api.amplitude.com", "resource_type": "xhr", "method": "POST", "is_third_party": true},
+    {"host": "cdn.jsdelivr.net", "resource_type": "script", "method": "GET", "is_third_party": true}
+  ],
+  "site_summary": {
+    "pages_scanned": 8,
+    "pages_with_forms": 3,
+    "total_forms_found": 3,
+    "unique_categories_found": ["address", "date_of_birth", "email", "full_name", "password", "phone"],
+    "top_third_party_hosts": ["mc.yandex.ru", "connect.facebook.net", "api.amplitude.com"],
+    "pages_with_privacy_link": 7,
+    "pages_with_consent_checkbox": 2,
+    "pages_with_marketing_consent": 1
+  },
+  "vendor_summary": [
+    {
+      "host": "mc.yandex.ru",
+      "vendor_class": "analytics",
+      "vendor_name": "Yandex Metrica",
+      "is_third_party": true,
+      "first_seen_at": "2026-04-01T10:15:45Z",
+      "notes": ["Yandex analytics pixel — common on Russian sites"]
+    },
+    {
+      "host": "connect.facebook.net",
+      "vendor_class": "ad_tech",
+      "vendor_name": "Meta Pixel",
+      "is_third_party": true,
+      "first_seen_at": "2026-04-01T10:15:46Z",
+      "notes": ["Meta advertising pixel; cross-border transfer implied"]
+    },
+    {
+      "host": "api.amplitude.com",
+      "vendor_class": "analytics",
+      "vendor_name": "Amplitude",
+      "is_third_party": true,
+      "first_seen_at": "2026-04-01T10:15:48Z",
+      "notes": ["Behavioural analytics; US-hosted"]
+    },
+    {
+      "host": "cdn.jsdelivr.net",
+      "vendor_class": "cdn",
+      "vendor_name": "jsDelivr",
+      "is_third_party": true,
+      "first_seen_at": "2026-04-01T10:15:47Z",
+      "notes": []
+    }
+  ],
+  "policy_analysis": {
+    "url": "https://example-corp.ru/privacy-policy",
+    "operator_name": "ООО «Пример Корп»",
+    "operator_contacts": ["privacy@example-corp.ru", "+7 (495) 000-11-22"],
+    "has_purpose_section": true,
+    "has_categories_section": true,
+    "has_legal_basis_section": true,
+    "has_processor_or_third_party_section": true,
+    "has_cross_border_section": false,
+    "has_subject_rights_section": true,
+    "has_retention_or_destruction_section": false,
+    "has_localization_statement": true,
+    "policy_signals": [
+      "Purpose/goals section found",
+      "Personal data categories section found",
+      "Legal basis section found",
+      "Third-party processor/transfer section found",
+      "Data subject rights section found",
+      "Data localization statement found (possible 152-FZ reference)"
+    ],
+    "policy_document_type": "html",
+    "policy_document_url": "https://example-corp.ru/privacy-policy",
+    "policy_parse_status": "parsed"
+  },
+  "processor_map": [
+    {
+      "processor_name": "Yandex Metrica",
+      "processor_type": "analytics",
+      "source": "inferred_public_signal",
+      "related_hosts": ["mc.yandex.ru"],
+      "related_pages": ["https://example-corp.ru/register", "https://example-corp.ru/"],
+      "confidence": "high",
+      "evidence": ["Script tag mc.yandex.ru detected on 6 pages"]
+    },
+    {
+      "processor_name": "Meta Pixel",
+      "processor_type": "ad_tech",
+      "source": "inferred_public_signal",
+      "related_hosts": ["connect.facebook.net"],
+      "related_pages": ["https://example-corp.ru/register", "https://example-corp.ru/"],
+      "confidence": "high",
+      "evidence": ["Script connect.facebook.net on 4 pages"]
+    },
+    {
+      "processor_name": "Amplitude",
+      "processor_type": "analytics",
+      "source": "inferred_public_signal",
+      "related_hosts": ["api.amplitude.com"],
+      "related_pages": ["https://example-corp.ru/register"],
+      "confidence": "medium",
+      "evidence": ["XHR to api.amplitude.com observed"]
+    }
+  ],
+  "fz152_assessment": {
+    "operator_name": "ООО «Пример Корп»",
+    "operator_contacts": ["privacy@example-corp.ru", "+7 (495) 000-11-22"],
+    "policy_publicly_available": true,
+    "privacy_links_found": 7,
+    "forms_collecting_pd": 3,
+    "detected_pd_categories": ["address", "date_of_birth", "email", "full_name", "password", "phone"],
+    "consent_mechanism_type": "explicit_checkbox",
+    "policy_has_purpose_section": true,
+    "policy_has_categories_section": true,
+    "policy_has_legal_basis_section": true,
+    "policy_has_processor_or_third_party_section": true,
+    "policy_has_cross_border_section": false,
+    "policy_has_subject_rights_section": true,
+    "policy_has_retention_or_destruction_section": false,
+    "policy_has_localization_statement": true,
+    "processor_map_present": true,
+    "third_party_routing_present": true,
+    "observed_submit_present": false,
+    "operator_supplied_evidence_present": false,
+    "metrics_or_tracking_present": true,
+    "potential_gaps": [
+      "Cross-border data transfer section not detected in public policy — Meta Pixel (US) and Amplitude (US) are present; cross-border transfer clause may be required.",
+      "Data retention / destruction section not detected in public policy.",
+      "Metrics and tracking tools are present; cookie consent / analytics disclosure may be required."
+    ],
+    "manual_validation_targets": [
+      "Verify operator legal identity (INN/OGRN/full legal name) from public registry.",
+      "Verify public policy is complete, current, and authored by a qualified specialist.",
+      "Review consent mechanisms: confirm checkboxes are not pre-ticked and consent is granular.",
+      "Validate DPA agreements exist with all identified third-party processors.",
+      "Clarify cross-border data transfer practices: Meta Pixel (US) and Amplitude (US) detected.",
+      "Define and document personal data retention and destruction procedures.",
+      "Verify tracking/analytics cookie consent disclosure on site."
+    ],
+    "overall_public_risk_level": "medium",
+    "disclaimer": "This assessment is based solely on publicly observable site behavior and heuristic analysis. It does not constitute legal advice or a definitive compliance determination under 152-FZ. All findings require manual validation by a qualified specialist."
+  },
+  "synthetic_submission_enabled": false,
+  "synthetic_submission_summary": null,
+  "operator_integration_evidence": null,
+  "operator_metadata": null,
+  "raw_json_export_path": "exports/a1b2c3d4-e5f6-7890-abcd-ef1234567890.json",
+  "markdown_export_path": "exports/a1b2c3d4-e5f6-7890-abcd-ef1234567890.md"
+}

@@ -1,0 +1,35 @@
+{% extends "admin/base.html" %}
+{% block title %}Журнал согласий — Admin{% endblock %}
+{% block content %}
+<h1 class="admin-title">Журнал согласий — последние 100</h1>
+{% if rows %}
+<div style="overflow-x:auto">
+<table class="admin-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Submission ID</th>
+      <th>Тип согласия</th>
+      <th>Текст</th>
+      <th>Чекбокс</th>
+      <th>Дата</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in rows %}
+    <tr>
+      <td>{{ row.id }}</td>
+      <td>{{ row.submission_id }}</td>
+      <td><span class="badge {% if row.consent_type == 'explicit_checkbox' %}badge-good{% elif row.consent_type == 'bundled_text' or row.consent_type == 'api_implicit' %}badge-mixed{% else %}badge-bad{% endif %}">{{ row.consent_type }}</span></td>
+      <td>{{ row.text_snapshot }}</td>
+      <td><span class="badge {% if row.checkbox_present %}badge-present{% else %}badge-absent{% endif %}">{% if row.checkbox_present %}да{% else %}нет{% endif %}</span></td>
+      <td>{{ row.created_at }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% else %}
+<p>Нет данных о согласиях.</p>
+{% endif %}
+{% endblock %}

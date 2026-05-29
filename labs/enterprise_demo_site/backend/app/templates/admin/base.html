@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Admin — ДемоКорп Lab{% endblock %}</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <style>
+    .admin-nav { background: #1a2b4a; padding: 0.75rem 1.5rem; display:flex; gap:1.5rem; align-items:center; flex-wrap:wrap; }
+    .admin-nav a { color:#cdd9f0; text-decoration:none; font-size:0.9rem; padding:0.3rem 0.6rem; border-radius:4px; }
+    .admin-nav a:hover, .admin-nav a.active { background:#e85d04; color:#fff; }
+    .admin-nav .brand { color:#fff; font-weight:700; font-size:1rem; margin-right:1rem; }
+    .admin-nav .logout { margin-left:auto; }
+    .admin-content { padding: 2rem 1.5rem; }
+    table.admin-table { width:100%; border-collapse:collapse; font-size:0.85rem; }
+    table.admin-table th { background:#1a2b4a; color:#fff; padding:0.5rem 0.75rem; text-align:left; }
+    table.admin-table td { padding:0.4rem 0.75rem; border-bottom:1px solid #e0e0e0; vertical-align:top; }
+    table.admin-table tr:nth-child(even) td { background:#f4f6fa; }
+    .badge { display:inline-block; padding:0.15rem 0.5rem; border-radius:3px; font-size:0.75rem; font-weight:600; }
+    .badge-good { background:#d4edda; color:#155724; }
+    .badge-mixed { background:#fff3cd; color:#856404; }
+    .badge-bad { background:#f8d7da; color:#721c24; }
+    .badge-present { background:#d4edda; color:#155724; }
+    .badge-absent { background:#f8d7da; color:#721c24; }
+    h1.admin-title { margin:0 0 1.5rem; font-size:1.5rem; color:#1a2b4a; }
+  </style>
+</head>
+<body>
+  <div class="admin-nav">
+    <span class="brand">ДемоКорп Admin</span>
+    <a href="/admin/submissions">Заявки</a>
+    <a href="/admin/routing-log">Маршрутизация</a>
+    <a href="/admin/consent-log">Согласия</a>
+    <a href="/admin/processors">Обработчики</a>
+    <a href="/" target="_blank">Сайт</a>
+    <a href="/admin/logout" class="logout">Выйти</a>
+  </div>
+  <div class="admin-content">
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>

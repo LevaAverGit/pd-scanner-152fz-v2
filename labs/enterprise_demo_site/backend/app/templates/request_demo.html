@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block title %}Запросить демо — ДемоКорп{% endblock %}
+{% block content %}
+<section class="form-section container">
+  <div class="form-layout">
+    <div class="form-main">
+      <h1>Запросить демонстрацию</h1>
+      <p>Заполните форму — наш менеджер свяжется с вами в течение 24 часов.</p>
+
+      {% if profile == "mixed_compliance" %}
+      <p class="consent-note">Отправляя форму, вы соглашаетесь с <a href="/privacy">Политикой конфиденциальности</a> ООО «ДемоКорп».</p>
+      {% endif %}
+
+      <form method="post" action="/submit" class="main-form" {% if profile == "bad_compliance" %}data-crm-capture{% endif %}>
+        <input type="hidden" name="form_type" value="demo_request">
+        <input type="hidden" name="source_page" value="/request-demo">
+        {% if profile != "good_compliance" %}
+        <!-- CRM hidden input signal for PD Scanner vendor detection -->
+        <input type="hidden" name="_crm_source" value="democorp_web">
+        <input type="hidden" name="_form_platform" value="democorp_forms_v2">
+        {% endif %}
+
+        <div class="field-row">
+          <div class="field">
+            <label for="first_name">Имя *</label>
+            <input type="text" id="first_name" name="first_name" placeholder="Иван" required>
+          </div>
+          <div class="field">
+            <label for="last_name">Фамилия *</label>
+            <input type="text" id="last_name" name="last_name" placeholder="Петров" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="email">Электронная почта *</label>
+          <input type="email" id="email" name="email" placeholder="ivan@company.ru" required>
+        </div>
+        <div class="field">
+          <label for="phone">Телефон</label>
+          <input type="tel" id="phone" name="phone" placeholder="+7 (999) 000-00-00">
+        </div>
+        <div class="field">
+          <label for="company">Компания *</label>
+          <input type="text" id="company" name="company" placeholder="ООО Компания" required>
+        </div>
+        <div class="field">
+          <label for="message">Комментарий</label>
+          <textarea id="message" name="message" rows="3" placeholder="Расскажите о ваших задачах..."></textarea>
+        </div>
+
+        {% if profile == "good_compliance" %}
+        <div class="field consent-field">
+          <input type="checkbox" id="consent" name="consent" value="1" required>
+          <label for="consent">
+            Я даю согласие на обработку персональных данных в соответствии с
+            <a href="/privacy" target="_blank">Политикой конфиденциальности</a> ООО «ДемоКорп»
+          </label>
+        </div>
+        {% endif %}
+
+        <button type="submit" class="btn-primary">Отправить заявку</button>
+
+        {% if profile == "bad_compliance" %}
+        <!-- No privacy link, no consent in bad_compliance mode -->
+        {% endif %}
+      </form>
+    </div>
+    <div class="form-sidebar">
+      <div class="sidebar-card">
+        <h3>Что вы получите</h3>
+        <ul>
+          <li>Персональная демонстрация платформы (60 мин)</li>
+          <li>Анализ текущих процессов</li>
+          <li>Коммерческое предложение</li>
+          <li>Пилотный доступ на 14 дней</li>
+        </ul>
+      </div>
+      <div class="sidebar-card">
+        <h3>Клиенты доверяют нам</h3>
+        <p>Более 500 enterprise-компаний используют ДемоКорп для автоматизации своих бизнес-процессов.</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

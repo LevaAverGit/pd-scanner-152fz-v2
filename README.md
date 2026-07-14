@@ -1,6 +1,6 @@
 # PD Scanner
 
-[![CI](https://github.com/LevaAverGit/pd-scanner-152fz/actions/workflows/ci.yml/badge.svg)](https://github.com/LevaAverGit/pd-scanner-152fz/actions/workflows/ci.yml)
+[![CI](https://github.com/LevaAverGit/pd-scanner-152fz-v2/actions/workflows/ci.yml/badge.svg)](https://github.com/LevaAverGit/pd-scanner-152fz-v2/actions/workflows/ci.yml)
 
 A local-first web application for privacy compliance pre-analysis of public websites.
 Given a URL, PD Scanner launches a headless browser, crawls the site, classifies

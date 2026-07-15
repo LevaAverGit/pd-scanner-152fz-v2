@@ -1,6 +1,9 @@
 # PD Scanner
 
 [![CI](https://github.com/LevaAverGit/pd-scanner-152fz-v2/actions/workflows/ci.yml/badge.svg)](https://github.com/LevaAverGit/pd-scanner-152fz-v2/actions/workflows/ci.yml)
+![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white)
 
 A local-first web application for privacy compliance pre-analysis of public websites.
 Given a URL, PD Scanner launches a headless browser, crawls the site, classifies
